@@ -1,0 +1,16 @@
+﻿@model Alimentos
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+<h1>Cadastrar novo alimento</h1>
+<hr/>
+
+<mensagem texto="@TempData["msg"]"></mensagem>
+
+<form asp-action="Cadastrar">
+    <partial name="_Form"/>
+
+    <input type="submit" value="Cadastrar" class="btn betn-sucess"/>
+</form>
+

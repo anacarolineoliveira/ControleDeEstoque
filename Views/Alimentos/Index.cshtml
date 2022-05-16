@@ -1,0 +1,70 @@
+﻿@model List<Alimentos>
+@{
+    ViewData["Title"] = "Alimentos";
+}
+
+<h1>Lista de Alimentos</h1>
+<hr/>
+
+<mensagem texto="@TempData["msg"]" class="my-3 alert alert-warning"></mensagem>
+
+<mensagem texto="@TempData["msgRemove"]" class=my-3 alert alert-danger"></mensagem>
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Categoria</th>
+        <th>Valor</th>
+        <th>Validade</th>
+        <th>Promotor</th>
+        <th>Ações</th>
+    </tr>
+    @foreach (Alimentos a in Model)
+    {
+        <tr>
+            <td>@a.AlimentosId</td>
+            <td>@a.Nome</td>
+            <td>@a.Validade.ToShortDateString()</td>
+            <td>@a.Categoria</td>
+            <td>@a.Valor</td>
+            <td>@(a.Promotor?"Sim":"Não")</td>
+            <td>
+                 <a asp-action="Editar" asp-route-id="@a.AlimentosId" class="btn btn-sm btn-warning">Editar</a>
+                 
+                 <!-- Botão para acionar modal -->
+                 <button onclick="idAlimentos.value= @a.AlimentosId" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modalExemplo">
+                   Remover
+                 </button>
+            </td>
+
+        </tr>
+    }
+</table>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalExemplo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Deseja realmente excluir este alimento?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+       <form asp-action="Remover">
+                     <input type="hidden" name=id id="idAlimentos">
+                     <input type="submit" value="Excluir" class="btn btn-danger"/> 
+                 </form>
+             </div>
+         </div>
+     </div>
+ </div>

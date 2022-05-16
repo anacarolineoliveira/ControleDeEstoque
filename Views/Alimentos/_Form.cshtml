@@ -1,0 +1,29 @@
+﻿@model Alimentos
+
+
+<div class="mb-3">  
+    <label asp-for="Nome"><</label>
+    <input asp-for="Nome" class="form-control"/>
+</div>
+<div class="mb-3">
+    <label asp-for="Validade"></label>
+    <input asp-for="Validade" class="formControl"/>
+</div>
+<div class="mb-3">
+    <label asp-for="Categoria"></</label>
+    <input asp-for="Categoria" class="form-control"/>
+</div>
+<div class="mb-3">
+    <label asp-for="Valor"></label>
+    <input asp-for="Valor" class="form-control"/>
+</div>
+<div class="mb-3">
+    <label asp-for="Promotor"></label>
+    <input asp-for="Promotor" class="form-control"/>
+</div>
+<div class="mb-3">
+    <label for="Categoria"></label>
+    <select asp-for="Categoria" asp-items="@Html.GetEnumSelectList<Categoria>()" class="form-control">
+        <option>Selecione</option>
+    </select>
+</div>
